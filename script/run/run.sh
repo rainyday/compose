@@ -36,7 +36,7 @@ if [ "$(pwd)" != '/' ]; then
 fi
 if [ -n "$COMPOSE_FILE" ]; then
     COMPOSE_OPTIONS="$COMPOSE_OPTIONS -e COMPOSE_FILE=$COMPOSE_FILE"
-    compose_dir=$(realpath $(dirname $COMPOSE_FILE))
+    compose_dir=$(realpath $(dirname $(echo "${COMPOSE_FILE}" | cut -d${COMPOSE_PATH_SEPARATOR:-:} -f1)))
 fi
 # TODO: also check --file argument
 if [ -n "$compose_dir" ]; then
